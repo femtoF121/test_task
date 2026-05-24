@@ -1,19 +1,14 @@
 import { ReloadOutlined } from "@ant-design/icons";
 import { Button, Flex, Segmented, Space, Typography } from "antd";
 import { useState } from "react";
-import Chart from "../components/Chart";
+import CoinChart from "../components/CoinChart";
+import { COINS_SEGMENT_OPTIONS } from "../constants/options";
 import { useCoinChart } from "../hooks/useCoinChart";
 
 const { Title } = Typography;
 
-const segmentOptions = [
-  { label: "Bitcoin", value: "bitcoin" },
-  { label: "Ethereum", value: "ethereum" },
-  { label: "Dogecoin", value: "dogecoin" },
-];
-
 function ChartPage() {
-  const [coinId, setCoinId] = useState(segmentOptions[0].value);
+  const [coinId, setCoinId] = useState(COINS_SEGMENT_OPTIONS[0].value);
   const [isManualRefresh, setIsManualRefresh] = useState(false);
 
   const { data, isLoading, refetch, isError } = useCoinChart(coinId);
@@ -41,11 +36,15 @@ function ChartPage() {
           Refresh
         </Button>
       </Flex>
-      <Segmented options={segmentOptions} value={coinId} onChange={setCoinId} />
+      <Segmented
+        options={COINS_SEGMENT_OPTIONS}
+        value={coinId}
+        onChange={setCoinId}
+      />
       {isError ? (
         <div style={{ color: "red" }}>Error loading {coinId} chart</div>
       ) : (
-        <Chart data={data || []} loading={showLoader} />
+        <CoinChart data={data || []} loading={showLoader} />
       )}
     </Space>
   );

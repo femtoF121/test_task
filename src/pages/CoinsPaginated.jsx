@@ -1,22 +1,20 @@
 import { Typography } from "antd";
 import { useMemo, useState } from "react";
 import CoinsTable from "../components/CoinsTable";
+import { MAX_PAGE, PAGE_SIZE } from "../constants/pagination";
 import { useCoins } from "../hooks/useCoins";
 
 const { Title } = Typography;
 
-const PageSize = 20;
-const MaxPage = 20;
-
 function CoinsPaginated() {
   const [page, setPage] = useState(1);
-  const { data, isLoading, isFetching, isError } = useCoins(page, PageSize);
+  const { data, isLoading, isFetching, isError } = useCoins(page, PAGE_SIZE);
 
   const paginationConfig = useMemo(
     () => ({
-      pageSize: PageSize,
+      pageSize: PAGE_SIZE,
       current: page,
-      total: MaxPage * PageSize,
+      total: MAX_PAGE * PAGE_SIZE,
       onChange: setPage,
       showSizeChanger: false,
     }),

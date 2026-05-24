@@ -1,8 +1,7 @@
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const fetchCoins = async (page, perPage) => {
-  const url = new URL(`${BASE_URL}/markets`);
-  url.searchParams.append("vs_currency", "usd");
+  const url = new URL(`${BASE_URL}/markets?vs_currency=usd`);
   url.searchParams.append("per_page", perPage);
   url.searchParams.append("page", page);
 
@@ -15,6 +14,7 @@ export const fetchCoins = async (page, perPage) => {
 
 export const fetchChart = async (coinId) => {
   if (!coinId) throw new Error("Coin ID is required");
+
   const response = await fetch(
     `${BASE_URL}/${coinId}/market_chart?vs_currency=usd&days=7`,
   );

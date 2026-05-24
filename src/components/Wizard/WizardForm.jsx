@@ -1,12 +1,5 @@
 import { Button, Flex, Form, Input, InputNumber, Select } from "antd";
-
-const countryOptions = [
-  { value: "ukraine", label: "Ukraine" },
-  { value: "poland", label: "Poland" },
-  { value: "germany", label: "Germany" },
-  { value: "uk", label: "United Kingdom" },
-  { value: "usa", label: "USA" },
-];
+import { COUNTRY_OPTIONS } from "../../constants/options";
 
 const rules = {
   name: [
@@ -44,7 +37,7 @@ function WizardForm({ form, onFinish }) {
         <Input />
       </Form.Item>
       <Form.Item name="country" label="Country" rules={rules.country}>
-        <Select options={countryOptions} />
+        <Select options={COUNTRY_OPTIONS} />
       </Form.Item>
       <Flex justify="space-between" align="end">
         <Form.Item name="age" label="Age" rules={rules.age}>

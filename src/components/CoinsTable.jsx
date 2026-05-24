@@ -22,14 +22,14 @@ const renderNameCell = (_, record) => (
   </Space>
 );
 
-const sorterNumberBy = (dataIndex) => (a, b) => a[dataIndex] - b[dataIndex];
+const sortNumberBy = (dataIndex) => (a, b) => a[dataIndex] - b[dataIndex];
 
 const columns = [
   {
     title: "#",
     width: 40,
     dataIndex: "market_cap_rank",
-    sorter: sorterNumberBy("market_cap_rank"),
+    sorter: sortNumberBy("market_cap_rank"),
   },
   {
     title: "Name",
@@ -40,14 +40,14 @@ const columns = [
     title: "Price",
     width: 120,
     dataIndex: "current_price",
-    sorter: sorterNumberBy("current_price"),
+    sorter: sortNumberBy("current_price"),
     render: (value) => formatPrice(value),
   },
   {
     title: "24h %",
     width: 120,
     dataIndex: "price_change_percentage_24h",
-    sorter: sorterNumberBy("price_change_percentage_24h"),
+    sorter: sortNumberBy("price_change_percentage_24h"),
     render: (value) => (
       <Typography.Text style={{ color: value > 0 ? "#52c41a" : "#f5222d" }}>
         {formatPercent(value)}
@@ -58,14 +58,14 @@ const columns = [
     title: "Market Cap",
     width: 120,
     dataIndex: "market_cap",
-    sorter: sorterNumberBy("market_cap"),
+    sorter: sortNumberBy("market_cap"),
     render: (value) => formatCompactNumber(value),
   },
   {
     title: "Volume (24h)",
     width: 120,
     dataIndex: "total_volume",
-    sorter: sorterNumberBy("total_volume"),
+    sorter: sortNumberBy("total_volume"),
     render: (value) => formatCompactNumber(value),
   },
 ];

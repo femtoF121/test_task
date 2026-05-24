@@ -1,5 +1,6 @@
 import { Button, Descriptions, Space } from "antd";
 import { useMemo } from "react";
+import { COUNTRY_OPTIONS } from "../../constants/options";
 
 function WizardFormSubmission({ data, onStartOver }) {
   const items = useMemo(
@@ -7,7 +8,8 @@ function WizardFormSubmission({ data, onStartOver }) {
       Object.entries(data).map(([key, value]) => ({
         key,
         label: key.charAt(0).toUpperCase() + key.slice(1),
-        children: value,
+        children:
+          COUNTRY_OPTIONS.find((c) => c.value === value)?.label || value,
       })),
     [data],
   );
