@@ -10,7 +10,7 @@ const MaxPage = 20;
 
 function CoinsPaginated() {
   const [page, setPage] = useState(1);
-  const { data, isLoading, isFetching } = useCoins(page, PageSize);
+  const { data, isLoading, isFetching, isError } = useCoins(page, PageSize);
 
   const paginationConfig = useMemo(
     () => ({
@@ -26,11 +26,15 @@ function CoinsPaginated() {
   return (
     <>
       <Title level={2}>Coins paginated table</Title>
-      <CoinsTable
-        data={data}
-        loading={isLoading || isFetching}
-        pagination={paginationConfig}
-      />
+      {isError ? (
+        <div style={{ color: "red" }}>Error loading coins</div>
+      ) : (
+        <CoinsTable
+          data={data}
+          loading={isLoading || isFetching}
+          pagination={paginationConfig}
+        />
+      )}
     </>
   );
 }

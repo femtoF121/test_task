@@ -16,7 +16,7 @@ function ChartPage() {
   const [coinId, setCoinId] = useState(segmentOptions[0].value);
   const [isManualRefresh, setIsManualRefresh] = useState(false);
 
-  const { data, isLoading, refetch } = useCoinChart(coinId);
+  const { data, isLoading, refetch, isError } = useCoinChart(coinId);
 
   const handleManualRefresh = async () => {
     setIsManualRefresh(true);
@@ -42,7 +42,11 @@ function ChartPage() {
         </Button>
       </Flex>
       <Segmented options={segmentOptions} value={coinId} onChange={setCoinId} />
-      <Chart data={data || []} loading={showLoader} />
+      {isError ? (
+        <div style={{ color: "red" }}>Error loading {coinId} chart</div>
+      ) : (
+        <Chart data={data || []} loading={showLoader} />
+      )}
     </Space>
   );
 }
