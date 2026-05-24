@@ -70,14 +70,14 @@ const columns = [
   },
 ];
 
-function CoinsTable({ data, loading, pageSize }) {
+function CoinsTable({ data, loading, pagination }) {
   return (
     <Table
       dataSource={data}
       loading={loading}
       columns={columns}
       rowKey="id"
-      pagination={!!pageSize && { pageSize }}
+      pagination={pagination ?? false}
       sticky
       scroll={{ x: 800 }}
     />
