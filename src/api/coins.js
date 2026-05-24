@@ -12,3 +12,12 @@ export const fetchCoins = async (page, perPage) => {
   }
   return response.json();
 };
+
+export const fetchChart = async (coinId) => {
+  if (!coinId) throw new Error("Coin ID is required");
+  const response = await fetch(
+    `${BASE_URL}/${coinId}/market_chart?vs_currency=usd&days=7`,
+  );
+  if (!response.ok) throw new Error(`Failed to fetch ${coinId} data`);
+  return response.json();
+};

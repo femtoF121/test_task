@@ -22,3 +22,11 @@ export const formatCompactNumber = (value) => {
     maximumFractionDigits: 2,
   }).format(value);
 };
+
+export const formatDate = (timestamp) =>
+  new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(timestamp));

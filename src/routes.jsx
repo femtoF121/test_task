@@ -4,7 +4,7 @@ import {
   HomeOutlined,
   LineChartOutlined,
 } from "@ant-design/icons";
-import Chart from "./pages/Chart.jsx";
+import ChartPage from "./pages/ChartPage.jsx";
 import Coins from "./pages/Coins.jsx";
 import CoinsPaginated from "./pages/CoinsPaginated.jsx";
 import Home from "./pages/Home.jsx";
@@ -28,7 +28,7 @@ export const routes = [
     path: "/chart",
     label: "Chart",
     icon: <LineChartOutlined />,
-    element: <Chart />,
+    element: <ChartPage />,
   },
   {
     path: "/wizard",
